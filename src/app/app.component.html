@@ -1,0 +1,78 @@
+<head>
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+</head>
+<h1>Produkt bewerten</h1>
+<mat-grid-list cols="2" rowHeight="2:1" #choice>
+  <mat-grid-tile>
+    <div class="common-width">
+        <mat-selection-list #star [(ngModel)]="selectedOptions" (selectionChange)="handleSelection($event)">
+            <mat-list-option [value]="5">
+                <mat-icon>star star star star star </mat-icon>
+            </mat-list-option>
+            <mat-list-option [value]="4">
+                <mat-icon>star star star star star_border</mat-icon>
+            </mat-list-option>
+            <mat-list-option [value]="3">
+                <mat-icon>star star star star_border star_border</mat-icon>
+            </mat-list-option>
+            <mat-list-option [value]="2">
+                <mat-icon>star star star_border star_border star_border</mat-icon>
+            </mat-list-option>
+            <mat-list-option [value]="1">
+                <mat-icon>star star_border star_border star_border star_border</mat-icon>
+            </mat-list-option>
+        </mat-selection-list>
+    </div>
+  </mat-grid-tile>
+  <mat-grid-tile>
+    <div class="common-width">
+      <form #form>
+          <mat-form-field matTextareaAutosize class="example-full-width">
+            <textarea #comment class="text-area-height" matInput placeholder="Geben Sie hier Ihren Kommentar ein:"></textarea>
+          </mat-form-field>
+      </form>
+    </div>
+  </mat-grid-tile>
+  <mat-grid-tile>
+    <div class="common-width">
+      <h4>So werden Sie veröffentlicht</h4>
+        <form #form1>
+          <div>
+              <mat-form-field class="example-full-width">
+                  <input #nickname matInput placeholder="Nickname">
+              </mat-form-field>
+          </div>
+          <div>
+              <mat-form-field class="example-full-width">
+                  <input #wohnort matInput placeholder="Wohnort">
+              </mat-form-field>
+          </div>
+        </form>
+    </div>
+  </mat-grid-tile>
+  <mat-grid-tile>
+      <div #benachrichtigung>
+          <mat-checkbox #check></mat-checkbox>
+          <p>Bitte benachrichtigen Sie mich, wenn es einen Kommentar zu meiner Bewertung gibt</p>
+      </div>
+      <button class="button-alignment" (click)="addComment(nickname.value,wohnort.value,comment.value,star.selectedOptions.selected); form1.reset(); form.reset(); check.checked = false;" mat-button>Absenden</button>
+  </mat-grid-tile>
+</mat-grid-list>
+<div>
+  <h2>Kommentare</h2>
+  <div *ngFor="let comment of comments">
+      <div class="comments">
+          <h4>{{comment.name}}</h4>
+      </div>
+      <div>
+          <h5>{{comment.location}}</h5>
+      </div>
+      <div>
+          <mat-icon>{{comment.rating | StarPipe}}</mat-icon>
+      </div>
+      <div>
+          <p>{{comment.comment}}</p>
+      </div>
+      <mat-divider></mat-divider>
+  </div>
+</div>

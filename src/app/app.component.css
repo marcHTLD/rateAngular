@@ -1,0 +1,25 @@
+:left{
+    align-content: left;
+}
+.example-full-width {
+    width: 100%;
+}
+
+.common-width{
+    width: 60%;
+    height: 100%;
+}
+
+.text-area-height{
+    height: 200px;
+}
+
+.button-alignment{
+    bottom: 0px;
+    right: 0px;
+    position: absolute;
+}
+
+.comments{
+    align-items: center;
+}
